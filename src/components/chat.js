@@ -40,9 +40,8 @@ export default class Chat extends Component {
     }
 
     // room id is combination with two user's 
-    connectToWebScoket = () => {
+    connectToWebScoket = (room_id) => {
         var user_id = 'test'
-        var room_id = 'test'
         const address = `wss://${SOCKET_API_GATEWAY_ID}.execute-api.us-east-2.amazonaws.com/dev?user_id=${user_id}&room_id=${room_id}`
         this.websocket = new WebSocket(address);
         this.websocket.onopen = () => {
@@ -70,17 +69,18 @@ export default class Chat extends Component {
 
     componentDidMount = async () => {
         const { data } = this.state;
+        var room_id = 'test'
         const result = await axios({
             method: 'GET',
             url: `https://${API_GATEWAY_ID}.execute-api.us-east-2.amazonaws.com/dev/chat`,
             params: {
-                room_id: "test"
+                room_id: room_id
             }
         });;
         this.setState({
             data: data.set("messages", result.data).set("user_id", moment().valueOf())
         })
-        this.connectToWebScoket();
+        this.connectToWebScoket(room_id);
     }
 
     onMessageReceived = async (message) => {
@@ -120,7 +120,7 @@ export default class Chat extends Component {
                     model={{
                         message: message.message,
                         sentTime: Date.now().toString(),
-                        sender: "Johns",
+                        sender: "Hyoeun",
                         direction: (userId == message.user_id) ? "outgoing" : "incoming",
                     }}
                 />
