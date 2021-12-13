@@ -6,7 +6,6 @@ import GoogleLogin from 'react-google-login';
 
 const clientId = "746573539634-o65k1ji3bqt8pna8dhv0ii55qm2ukau3.apps.googleusercontent.com";
 
-
 function Login({ authenticated, login, location }) {
 
     console.log('login part')
@@ -19,14 +18,14 @@ function Login({ authenticated, login, location }) {
 
     // Google Login Fail
     const responseFail = (err) => {
-        console.error(err);
         alert('Login fail with Google OAuth2.0');
     }
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
   
-    const handleClick = () => {
+    const handleClick = (e) => {
+        e.preventDefault()
         try {
             login({ email, password });
         } catch (e) {
@@ -78,7 +77,7 @@ function Login({ authenticated, login, location }) {
     );
   }
   
-  export default Login;
+export default Login;
 
 /*
 export default class Login extends Component {

@@ -16,7 +16,9 @@ function App() {
   const [user, setUser] = useState(null);
   const authenticated = user != null;
 
-  const login = ({ email, password }) => setUser(signIn({ email, password }));
+  const login = async ({ email, password }) => {
+    setUser(await signIn({ email, password }));
+  }
   const logout = () => setUser(null);
   
   return (<Router>
