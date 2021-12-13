@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export function signIn({ email, password }) {
-/*
-    await axios.post(
+    
+    axios.get(
         'https://67zgy6fl0h.execute-api.us-east-2.amazonaws.com/default/login',
         { email: `${email}`,
         password: `${password}` }
@@ -17,10 +17,11 @@ export function signIn({ email, password }) {
             return null
         }
     });
-*/
+    
+    /*
     const user = "123@gmail.com" === email && "123" === password;
     console.log(user)
     if (user === false) throw new Error();
     return user;
-  
+    */
 }
