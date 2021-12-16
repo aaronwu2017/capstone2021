@@ -8,7 +8,7 @@ import {
   Message,
   MessageInput,
 } from "@chatscope/chat-ui-kit-react";
-import { Map, List, Record } from 'immutable';
+import { Map } from 'immutable';
 import moment from 'moment';
 
 const API_GATEWAY_ID = "x80w7v7lf1"
@@ -98,7 +98,7 @@ export default class Chat extends Component {
     onSend = async (message) => {
         const { data } = this.state;
         console.log(data.get("user_id"))
-        const result = await axios({
+        await axios({
             method: 'PUT',
             url: `https://${API_GATEWAY_ID}.execute-api.us-east-2.amazonaws.com/dev/chat`,
             data: {
@@ -121,7 +121,7 @@ export default class Chat extends Component {
                         message: message.message,
                         sentTime: Date.now().toString(),
                         sender: "Hyoeun",
-                        direction: (userId == message.user_id) ? "outgoing" : "incoming",
+                        direction: (userId === message.user_id) ? "outgoing" : "incoming",
                     }}
                 />
             );
